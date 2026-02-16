@@ -63,4 +63,6 @@ const displayProducts=(Products)=>{
 
 
 }
+
+
 loadProducts();
