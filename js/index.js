@@ -18,6 +18,7 @@ const loadCategories=()=>{
   fetch('https://fakestoreapi.com/products/categories')
   .then(res=>res.json())
   .then(categories=>{
+   
     displayCategories(categories)}
     );
 }
@@ -64,22 +65,61 @@ const displayProducts = (products, containerId) => {
         cardContainer.append(productCard);
     });
 }
-const displayCategories=(categories)=>{
-   const categoryContainer=document.getElementById('category-container');
+const displayCategories = (categories) => {
 
-   categories.forEach(category=>{
-    const button=document.createElement('button')
-    const sanitizedCategory = category.replace("'", "\\'");
-    button.innerHTML=`<button onclick="loadCategoryCards('${sanitizedCategory}')" class="btn btn-outline border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-700 hover:border-slate-300 rounded-full px-6 normal-case text-base font-medium h-12 min-h-0">
-      ${category}
-    </button>`
-    categoryContainer.append(button);
-   })
-}
-document.getElementById('all').addEventListener('click', function() {
-    displayProducts(allProductsData, 'all-products-container');
-    
+  const categoryContainer = document.getElementById('category-container');
+
+  categories.forEach(category => {
+
+    const button = document.createElement('button');
+
+    button.className = `
+      btn btn-outline border-slate-200 text-slate-600 
+      hover:bg-slate-50 hover:text-slate-700 
+      hover:border-slate-300 rounded-full px-6 
+      normal-case text-base font-medium h-12 min-h-0
+    `;
+
+    button.innerText = category;
+
+    // Click Event
+    button.addEventListener("click", () => {
+      setActiveButton(button);
+      loadCategoryCards(category);
+    });
+
+    categoryContainer.appendChild(button);
+  });
+
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const allBtn = document.getElementById("all");
+
+    if (!allBtn) return;  
+
+    allBtn.addEventListener("click", function () {
+
+        if (allProductsData && allProductsData.length > 0) {
+            displayProducts(allProductsData, "all-products-container");
+        }
+
+        setActiveButton(this);
+    });
+
 });
+
+
+const setActiveButton = (clickedButton) => {
+
+  const buttons = document.querySelectorAll('#category-container button');
+
+  buttons.forEach(btn => btn.classList.remove('activeBtn'));
+
+  clickedButton.classList.add('activeBtn');
+};
+
 
 loadAllData();
 loadCategories();

@@ -2,7 +2,8 @@ body {
   scroll-behavior: smooth;
 }
 
-.activeBtn{
-  color: #4f46e5;
- font-weight: 500;
+.activeBtn {
+  background-color: #4338ca !important;
+  color: white !important;
+  border: none !important;
 }
