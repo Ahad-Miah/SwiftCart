@@ -1,4 +1,5 @@
 let allProductsData = [];
+let cart = [];
 const loadAllData = () => {
 
     const loader = document.getElementById('loader');
@@ -59,7 +60,17 @@ const loadDetails=(id)=>{
     
     fetch(`https://fakestoreapi.com/products/${id}`)
     .then(res =>res.json())
-    .then(data=>displayDetails(data))
+    .then(data=>
+      {
+        displayDetails(data)})
+    .catch(error=>console.log(error));
+}
+const loadSpecificProduct=(id)=>{
+    fetch(`https://fakestoreapi.com/products/${id}`)
+    .then(res =>res.json())
+    .then(data=>
+      {
+        addedCart(data)})
     .catch(error=>console.log(error));
 }
 const displayDetails = (details) => {
@@ -82,7 +93,7 @@ const displayDetails = (details) => {
                 <span class="text-xl font-semibold text-[#0E7A81]">$${details.price || "0.00"}</span>
                 <span class="flex items-center gap-1 text-yellow-500">
                     ${"★".repeat(Math.floor(details.rating.rate || 0))} 
-                    ${"☆".repeat(5 - Math.floor(details.rating.rate || 0))}
+                    ${"☆".repeat(5 - Math.floor(details.rating.rate|| 0))}
                     <span class="text-gray-500 text-sm">(${details.rating.rate || 0})</span>
                 </span>
             </div>
@@ -102,10 +113,18 @@ const displayDetails = (details) => {
 
 // Example Add to Cart function
 const addToCart = (id) => {
-    console.log(`Product with ID ${id} added to cart.`);
-    alert("Added to Cart!");
+   loadSpecificProduct(id);
 }
-
+const addedCart=(data)=>{
+ cart.push(data);
+ updateCartCount();
+ 
+}
+const updateCartCount = () => {
+    const cartCount = document.getElementById('cartCount');
+    cartCount.textContent = cart.length;
+    document.getElementById('showModal').close();
+}
 
 const displayProducts = (products, containerId) => {
     const cardContainer = document.getElementById(containerId);
@@ -140,13 +159,14 @@ const displayProducts = (products, containerId) => {
               <button  onclick="loadDetails(${product.id})"  class="flex-1 border border-gray-300 rounded-lg py-2 text-sm text-gray-600 hover:bg-gray-50 transition">
                 Details
               </button>
-              <button onclick="addToCart(${product.id})" class="flex-1 bg-indigo-600 text-white rounded-lg py-2 text-sm hover:bg-indigo-700 transition">
+              <button  onclick="addToCart(${product.id})"  class="flex-1 bg-indigo-600 text-white rounded-lg py-2 text-sm hover:bg-indigo-700 transition">
                 Add to Cart
               </button>
             </div>
           </div>
         </div>
         `;
+         
         cardContainer.append(productCard);
     });
 }
