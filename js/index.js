@@ -1,82 +1,85 @@
-const loadProducts=()=>{
-
-
+let allProductsData = [];
+const loadAllData = () => {
     fetch('https://fakestoreapi.com/products')
-    .then(res=>res.json())
-    .then(data=>displayProducts(data.slice(0,3)));
+    .then(res => res.json())
+    .then(data => {
+      allProductsData=data;
+        displayProducts(data.slice(0, 3), 'trending-card-container');
+        displayProducts(data, 'all-products-container');
+    });
 }
-const displayProducts=(Products)=>{
+const loadCategoryCards=(category)=>{
+fetch(`https://fakestoreapi.com/products/category/${category}`)
+.then(res=>res.json())
+.then(data=>displayProducts(data,'all-products-container'))
 
-   const cardContainer=document.getElementById('trending-card-container');
+}
+const loadCategories=()=>{
+  fetch('https://fakestoreapi.com/products/categories')
+  .then(res=>res.json())
+  .then(categories=>{
+    displayCategories(categories)}
+    );
+}
+const displayProducts = (products, containerId) => {
+    const cardContainer = document.getElementById(containerId);
+    
+    if (!cardContainer) return;
 
-   Products.forEach(product => {
-    const productCard=document.createElement('div');
-    productCard.innerHTML=`
-    <div
-          class="bg-white rounded-2xl shadow-sm hover:shadow-md transition duration-300 overflow-hidden"
-        >
+    // Clear container before adding (prevents duplicates)
+    cardContainer.innerHTML = "";
+
+    products.forEach(product => {
+        const productCard = document.createElement('div');
+        productCard.innerHTML = `
+        <div class="bg-white rounded-2xl shadow-sm hover:shadow-md transition duration-300 overflow-hidden border border-gray-100 h-full flex flex-col">
           <div class="bg-gray-100 p-4 flex items-center justify-center">
-            <img
-              src="${product.image}"
-              class="h-56 object-contain"
-            />
+            <img src="${product.image}" class="h-48 object-contain" />
           </div>
-
-          <div class="p-6">
+          <div class="p-6 flex flex-col flex-grow">
             <div class="flex justify-between items-center mb-3">
-              <span
-                class="text-xs font-medium px-3 py-1 rounded-full bg-indigo-100 text-indigo-600"
-              >
-               ${product.category}
+              <span class="text-xs font-medium px-3 py-1 rounded-full bg-indigo-100 text-indigo-600 uppercase">
+                ${product.category}
               </span>
-
               <div class="flex items-center text-sm text-gray-500">
                 <i class="fa-solid fa-star text-yellow-400 mr-1"></i>
-                <span> ${product.rating.rate} (${product.rating.count})</span>
+                <span> ${product.rating.rate}</span>
               </div>
             </div>
-            <h3 class="font-semibold text-gray-800 truncate mb-2">
-              ${product.title.slice(0,37)}
+            <h3 class="font-semibold text-gray-800 mb-2 line-clamp-2">
+              ${product.title}
             </h3>
-
-            <p class="text-lg font-bold text-gray-900 mb-5"> ${product.price}</p>
-            <div class="flex gap-3">
-              <button
-                class="flex-1 border border-gray-300 rounded-lg py-2 flex items-center justify-center gap-2 text-gray-600 hover:bg-gray-50 transition"
-              >
-                <i class="fa-regular fa-eye"></i>
+            <p class="text-lg font-bold text-gray-900 mb-5 mt-auto">$${product.price}</p>
+            <div class="flex gap-2">
+              <button class="flex-1 border border-gray-300 rounded-lg py-2 text-sm text-gray-600 hover:bg-gray-50 transition">
                 Details
               </button>
-              <button
-                class="flex-1 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg py-2 flex items-center justify-center gap-2 hover:opacity-90 transition"
-              >
-                <i class="fa-solid fa-cart-shopping"></i>
-                Add
+              <button class="flex-1 bg-indigo-600 text-white rounded-lg py-2 text-sm hover:bg-indigo-700 transition">
+                Add to Cart
               </button>
             </div>
           </div>
         </div>
-    `
-    cardContainer.append(productCard)
-   });
-    
-
-
+        `;
+        cardContainer.append(productCard);
+    });
 }
-// const LandingPageBtnActv = (code) => {
+const displayCategories=(categories)=>{
+   const categoryContainer=document.getElementById('category-container');
 
-//     const homeBtn = document.getElementById('homeBtn');
-//     const productBtn = document.getElementById('productBtn');
+   categories.forEach(category=>{
+    const button=document.createElement('button')
+    const sanitizedCategory = category.replace("'", "\\'");
+    button.innerHTML=`<button onclick="loadCategoryCards('${sanitizedCategory}')" class="btn btn-outline border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-700 hover:border-slate-300 rounded-full px-6 normal-case text-base font-medium h-12 min-h-0">
+      ${category}
+    </button>`
+    categoryContainer.append(button);
+   })
+}
+document.getElementById('all').addEventListener('click', function() {
+    displayProducts(allProductsData, 'all-products-container');
+    
+});
 
-//     if (code === "home") {
-//         productBtn.classList.remove('activeBtn');
-//         homeBtn.classList.add('activeBtn');
-//     } 
-//     else if (code === "product") {
-//         productBtn.classList.add('activeBtn');
-//         homeBtn.classList.remove('activeBtn');
-//     }
-// }
-
-
-loadProducts();
+loadAllData();
+loadCategories();
