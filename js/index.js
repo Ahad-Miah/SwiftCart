@@ -1,19 +1,52 @@
 let allProductsData = [];
 const loadAllData = () => {
-    fetch('https://fakestoreapi.com/products')
-    .then(res => res.json())
-    .then(data => {
-      allProductsData=data;
-        displayProducts(data.slice(0, 3), 'trending-card-container');
-        displayProducts(data, 'all-products-container');
-    });
-}
-const loadCategoryCards=(category)=>{
-fetch(`https://fakestoreapi.com/products/category/${category}`)
-.then(res=>res.json())
-.then(data=>displayProducts(data,'all-products-container'))
 
-}
+    const loader = document.getElementById('loader');
+
+    if (loader) {
+        loader.classList.remove('hidden');
+    }
+
+    fetch('https://fakestoreapi.com/products')
+        .then(res => res.json())
+        .then(data => {
+            allProductsData = data;
+
+            displayProducts(data.slice(0, 3), 'trending-card-container');
+            displayProducts(data, 'all-products-container');
+        })
+        .catch(error => {
+            console.log(error);
+        })
+        .finally(() => {
+            if (loader) {
+                loader.classList.add('hidden');
+            }
+        });
+};
+
+
+const loadCategoryCards = (category) => {
+
+    const loader = document.getElementById('loader');
+    const allProducts=document.getElementById('all-products-container');
+    loader.classList.remove('hidden'); 
+    allProducts.classList.add('hidden');
+
+    fetch(`https://fakestoreapi.com/products/category/${category}`)
+        .then(res => res.json())
+        .then(data => {
+            displayProducts(data, 'all-products-container');
+        })
+        .catch(error => {
+            console.log(error);
+        })
+        .finally(() => {
+          allProducts.classList.remove('hidden');
+            loader.classList.add('hidden'); 
+        });
+};
+
 const loadCategories=()=>{
   fetch('https://fakestoreapi.com/products/categories')
   .then(res=>res.json())
@@ -119,6 +152,17 @@ const setActiveButton = (clickedButton) => {
 
   clickedButton.classList.add('activeBtn');
 };
+// const toggleLoader = (show) => {
+//     const loader = document.getElementById("loader");
+//     if (!loader) return;
+
+//     if (show) {
+//         loader.classList.remove("hidden");
+//     } else {
+//         loader.classList.add("hidden");
+//     }
+// };
+
 
 
 loadAllData();
