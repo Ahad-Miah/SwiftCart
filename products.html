@@ -17,41 +17,169 @@
 <body>
 
 <!-- Navbar -->
- <nav class="bg-white shadow-md fixed w-full z-50">
-  <div class="max-w-8xl mx-auto px-6 py-4 flex justify-between items-center">
+ <nav class="bg-white shadow-md sticky top-0 w-full z-50">
+      <div
+        class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <h1 class="text-2xl font-bold text-indigo-600">SwiftCart</h1>
 
-    <h1 class="text-2xl font-bold text-indigo-600">SwiftCart</h1>
+        <ul class="hidden md:flex gap-8 font-medium">
+          <li>
+            <a href="./index.html"  id="homeBtn"> Home </a>
+          </li>
 
-    <ul class="hidden md:flex gap-8 font-medium">
-      <li><a href="index.html" class="text-indigo-600">Home</a></li>
-      <li><a  href="products.html">Products</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul>
-    <div class="flex justify-center items-center gap-2">
-        <div class="dropdown md:hidden">
-      <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" /> </svg>
+          <li>
+            <a href="./products.html" class="text-blue-500" id="productBtn"> Products </a>
+          </li>
+
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+        <div class="flex justify-center items-center gap-2">
+          <div class="dropdown md:hidden">
+            <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h7"
+                />
+              </svg>
+            </div>
+            <ul
+              tabindex="-1"
+              class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+            >
+              <li><a href="index.html" class="text-indigo-600">Home</a></li>
+              <li><a href="products.html">Products</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
+          <div class="relative">
+            <i class="fa-solid fa-cart-shopping text-xl cursor-pointer"></i>
+            <span
+              id="cart-count"
+              class="absolute -top-2 -right-2 bg-indigo-600 text-white text-xs px-2 py-0.5 rounded-full"
+              >0</span
+            >
+          </div>
+        </div>
       </div>
-      <ul
-        tabindex="-1"
-        class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-        <li><a href="index.html" class="text-indigo-600">Home</a></li>
-      <li><a href="products.html">Products</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Contact</a></li>
-      </ul>
-    </div>
-    <div class="relative">
-      <i class="fa-solid fa-cart-shopping text-xl cursor-pointer"></i>
-      <span id="cart-count"
-        class="absolute -top-2 -right-2 bg-indigo-600 text-white text-xs px-2 py-0.5 rounded-full">0</span>
-    </div>
-    </div>
-    
+    </nav>
+<section class="mt-11">
+  <div
+        id="trending-card-container"
+        class="grid md:grid-cols-2 lg:grid-cols-3 gap-10"
+      ></div>
+</section>
+<!-- footer -->
+<footer class="bg-[#1e293b] text-slate-300 py-12 mt-14 px-6 font-sans">
+      <div class="max-w-7xl mx-auto">
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-10"
+        >
+          <div class="space-y-4">
+            <h2 class="text-2xl font-bold text-[#6366f1]">SwiftCart</h2>
+            <p class="text-sm leading-relaxed max-w-xs">
+              Your one-stop shop for all your fashion and lifestyle needs.
+              Quality products, fast delivery, and excellent support.
+            </p>
+          </div>
 
-  </div>
-</nav>
+          <div>
+            <h3
+              class="text-xs font-bold uppercase tracking-widest text-white mb-6"
+            >
+              Quick Links
+            </h3>
+            <ul class="space-y-4 text-sm">
+              <li>
+                <a href="./index.html" class="hover:text-white transition"
+                  >Home</a
+                >
+              </li>
+              <li>
+                <a href="./products.html" class="hover:text-white transition"
+                  >Products</a
+                >
+              </li>
+              <li><a class="hover:text-white transition">About</a></li>
+              <li><a class="hover:text-white transition">Contact</a></li>
+            </ul>
+          </div>
 
+          <div>
+            <h3
+              class="text-xs font-bold uppercase tracking-widest text-white mb-6"
+            >
+              Support
+            </h3>
+            <ul class="space-y-4 text-sm">
+              <li><a class="hover:text-white transition">FAQ</a></li>
+              <li><a class="hover:text-white transition">Shipping</a></li>
+              <li><a class="hover:text-white transition">Returns</a></li>
+              <li><a class="hover:text-white transition">Privacy Policy</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h3
+              class="text-xs font-bold uppercase tracking-widest text-white mb-4"
+            >
+              Subscribe to our newsletter
+            </h3>
+            <p class="text-sm mb-4">
+              The latest news, articles, and resources, sent to your inbox
+              weekly.
+            </p>
+            <form class="flex flex-col sm:flex-row gap-2">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                class="bg-white text-slate-900 px-4 py-2 rounded-md outline-none w-full"
+              />
+              <button
+                class="bg-[#5850ec] hover:bg-[#4338ca] text-white px-6 py-2 rounded-md font-medium transition"
+              >
+                Subscribe
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div
+          class="border-t border-slate-700 pt-8 flex flex-col md:flex-row justify-between items-center gap-6"
+        >
+          <p class="text-sm">© 2025 SwiftCart, Inc. All rights reserved.</p>
+
+          <div class="flex space-x-6 text-xl">
+            <a class="hover:text-white transition"
+              ><i class="fa-brands fa-facebook"></i
+            ></a>
+            <a class="hover:text-white transition"
+              ><i class="fa-brands fa-twitter"></i
+            ></a>
+            <a class="hover:text-white transition"
+              ><i class="fa-brands fa-instagram"></i
+            ></a>
+            <a class="hover:text-white transition"
+              ><i class="fa-brands fa-linkedin"></i
+            ></a>
+            <a class="hover:text-white transition"
+              ><i class="fa-regular fa-envelope"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="./js/index.js"></script>
 </body>
 </html>

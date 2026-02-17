@@ -2,7 +2,7 @@ body {
   scroll-behavior: smooth;
 }
 
-.activeLBtn{
+.activeBtn{
   color: #4f46e5;
  font-weight: 500;
 }

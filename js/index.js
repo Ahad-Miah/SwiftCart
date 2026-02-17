@@ -63,6 +63,20 @@ const displayProducts=(Products)=>{
 
 
 }
+// const LandingPageBtnActv = (code) => {
+
+//     const homeBtn = document.getElementById('homeBtn');
+//     const productBtn = document.getElementById('productBtn');
+
+//     if (code === "home") {
+//         productBtn.classList.remove('activeBtn');
+//         homeBtn.classList.add('activeBtn');
+//     } 
+//     else if (code === "product") {
+//         productBtn.classList.add('activeBtn');
+//         homeBtn.classList.remove('activeBtn');
+//     }
+// }
 
 
 loadProducts();
