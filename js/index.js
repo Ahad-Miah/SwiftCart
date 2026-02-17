@@ -119,11 +119,32 @@ const addedCart=(data)=>{
  cart.push(data);
  updateCartCount();
    showToast(`${data.title} added to cart!`);
+     if(document.getElementById('showModal')) document.getElementById('showModal').close();
+
 }
 const updateCartCount = () => {
-    const cartCount = document.getElementById('cartCount');
-    cartCount.textContent = cart.length;
-    document.getElementById('showModal').close();
+   const cartItemsContainer = document.getElementById('cartItems');
+    const cartCountBadge = document.getElementById('cartItemCount');
+    const cartCountText = document.getElementById('cartCount');
+    const cartSubtotal = document.getElementById('cartSubtotal');
+    cartItemsContainer.innerHTML = '';
+
+    let total = 0;
+
+    cart.forEach(item => {
+        total += parseFloat(item.price);
+
+        const itemEl = document.createElement('div');
+        itemEl.className = "flex justify-between items-center border-b border-gray-200 pb-1";
+        itemEl.innerHTML = `
+            <span class="truncate">${item.title}</span>
+            <span class="font-semibold">$${item.price}</span>
+        `;
+        cartItemsContainer.appendChild(itemEl);
+    });
+    cartCountBadge.textContent = cart.length;
+    cartCountText.textContent = cart.length;
+    cartSubtotal.textContent = total.toFixed(2);
   
 }
 
