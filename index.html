@@ -19,31 +19,33 @@
     />
     <!-- css -->
     <link rel="stylesheet" href="./css/style.css" />
-    <link rel="stylesheet" href="./products.html" />
   </head>
   <body>
     <!--Navbar-->
     <nav class="bg-white shadow-md sticky top-0 w-full z-50">
       <div
-        class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center"
+        class="max-w-7xl mx-auto px-4 md:px-6 py-4 flex justify-between items-center"
       >
         <h1 class="text-2xl font-bold text-indigo-600">SwiftCart</h1>
 
-        <ul class="hidden md:flex gap-8 font-medium">
+        <ul
+          class="hidden md:flex gap-6 lg:gap-8 font-medium text-sm md:text-base"
+        >
           <li>
             <a href="./index.html" class="text-blue-500" id="homeBtn"> Home </a>
           </li>
-
-          <li>
-            <a href="./products.html" id="productBtn"> Products </a>
-          </li>
-
+          <li><a href="./products.html" id="productBtn"> Products </a></li>
           <li><a href="#">About</a></li>
           <li><a href="#">Contact</a></li>
         </ul>
+
         <div class="flex justify-center items-center gap-2">
           <div class="dropdown md:hidden">
-            <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+            <div
+              tabindex="0"
+              role="button"
+              class="btn btn-ghost btn-circle p-2"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="h-5 w-5"
@@ -61,7 +63,7 @@
             </div>
             <ul
               tabindex="-1"
-              class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              class="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-48 p-2 shadow"
             >
               <li><a href="index.html" class="text-indigo-600">Home</a></li>
               <li><a href="products.html">Products</a></li>
@@ -69,43 +71,76 @@
               <li><a href="#">Contact</a></li>
             </ul>
           </div>
-  <div class="relative">
-  <div class="flex-none">
-    <div class="dropdown dropdown-end">
-      <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
-        <div class="indicator">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-          </svg>
-          <span id="cartItemCount" class="badge badge-sm indicator-item">0</span>
-        </div>
-      </div>
 
-      <div tabindex="0" class="card card-compact dropdown-content bg-base-100 z-50 mt-3 w-80 shadow">
-        <div class="card-body">
-          <h3 class="font-bold text-lg">Cart (<span id="cartCount">0</span> items)</h3>
-          <div id="cartItems" class="space-y-2 max-h-64 overflow-y-auto"></div>
-          <span class="text-info font-semibold">Subtotal: $<span id="cartSubtotal">0</span></span>
-        </div>
-      </div>
+          <!-- Cart -->
+          <div class="relative">
+            <div class="flex-none">
+              <div class="dropdown dropdown-end">
+                <div
+                  tabindex="0"
+                  role="button"
+                  class="btn btn-ghost btn-circle"
+                >
+                  <div class="indicator">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-5 w-5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                      />
+                    </svg>
+                    <span
+                      id="cartItemCount"
+                      class="badge badge-sm indicator-item"
+                      >0</span
+                    >
+                  </div>
+                </div>
 
-    </div>
-  </div>
-</div>
+                <div
+                  tabindex="0"
+                  class="card card-compact dropdown-content bg-base-100 z-50 mt-3 w-72 sm:w-80 shadow"
+                >
+                  <div class="card-body">
+                    <h3 class="font-bold text-lg">
+                      Cart (<span id="cartCount">0</span> items)
+                    </h3>
+                    <div
+                      id="cartItems"
+                      class="space-y-2 max-h-64 overflow-y-auto"
+                    ></div>
+                    <span class="text-info font-semibold"
+                      >Subtotal: $<span id="cartSubtotal">0</span></span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </nav>
+
     <!-- Banner -->
     <div
-      class="hero h-[38rem]"
+      class="hero h-[30rem] sm:h-[35rem] md:h-[38rem] lg:h-[42rem] bg-cover bg-center"
       style="background-image: url(./assets/banner-image.png)"
     >
       <div class="hero-overlay"></div>
-      <div class="hero-content text-neutral-content text-center">
-        <div class="max-w-md">
-          <h1 class="mb-5 text-5xl font-bold">Best Collection for you</h1>
-          <p class="mb-5">
-            Discover the latest trends in fashion, electronics, and more.Shop
+      <div class="hero-content text-neutral-content text-center px-4">
+        <div class="max-w-md sm:max-w-lg">
+          <h1 class="mb-5 text-3xl sm:text-4xl md:text-5xl font-bold">
+            Best Collection for you
+          </h1>
+          <p class="mb-5 text-sm sm:text-base md:text-lg">
+            Discover the latest trends in fashion, electronics, and more. Shop
             with confidence and style with SwiftCart.
           </p>
           <button class="btn btn-primary">
@@ -114,133 +149,166 @@
         </div>
       </div>
     </div>
+
     <!-- Why Choose Us -->
-    <section class="py-16 bg-gray-100">
-      <div class="max-w-7xl mx-auto px-6 text-center">
+    <section class="py-12 md:py-16 bg-gray-100">
+      <div class="max-w-7xl mx-auto px-4 md:px-6 text-center">
         <div>
-          <h2 class="text-3xl font-bold mb-10 text-slate-950">Why Choose Us</h2>
-          <h5 class="text-gray-600 font-semibold -mt-7 mb-16">
-            We provide the best shooping experience with top-notch services.
+          <h2
+            class="text-2xl sm:text-3xl font-bold mb-6 sm:mb-10 text-slate-950"
+          >
+            Why Choose Us
+          </h2>
+          <h5 class="text-gray-600 font-semibold mb-8 sm:mb-16">
+            We provide the best shopping experience with top-notch services.
           </h5>
         </div>
-        <!-- service card -->
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10 *:mb-5">
-          <!-- Delivery card -->
+
+        <!-- Service Cards -->
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-10"
+        >
+          <!-- Fast Delivery -->
           <div
-            class="relative border bg-white rounded-2xl p-8 pt-14 shadow-sm hover:shadow-md transition duration-300"
+            class="relative border bg-white rounded-2xl p-6 sm:p-8 pt-14 shadow-sm hover:shadow-md transition duration-300"
           >
             <div
-              class="absolute -top-9 left-8 bg-white p-2 rounded-xl shadow-md"
+              class="absolute -top-8 left-6 sm:left-8 bg-white p-2 rounded-xl shadow-md"
             >
-              <div class="bg-indigo-100 p-4 rounded-lg">
-                <i class="fa-solid fa-truck text-indigo-800 text-xl"></i>
+              <div class="bg-indigo-100 p-3 sm:p-4 rounded-lg">
+                <i
+                  class="fa-solid fa-truck text-indigo-800 text-xl sm:text-2xl"
+                ></i>
               </div>
             </div>
-
-            <h3 class="text-xl text-left font-semibold text-gray-800 mb-4">
+            <h3
+              class="text-xl sm:text-xl text-left font-semibold text-gray-800 mb-2 sm:mb-4"
+            >
               Fast Delivery
             </h3>
-
-            <p class="text-gray-500 text-left leading-relaxed">
+            <p
+              class="text-gray-500 text-left text-sm sm:text-base leading-relaxed"
+            >
               Get your orders delivered to your doorstep quickly and
               efficiently.
             </p>
           </div>
-          <!-- support card -->
+
+          <!-- 24/7 Support -->
           <div
-            class="relative border bg-white rounded-2xl p-8 pt-14 shadow-sm hover:shadow-md transition duration-300"
+            class="relative border bg-white rounded-2xl p-6 sm:p-8 pt-14 shadow-sm hover:shadow-md transition duration-300"
           >
             <div
-              class="absolute -top-9 left-8 bg-white p-2 rounded-xl shadow-md"
+              class="absolute -top-8 left-6 sm:left-8 bg-white p-2 rounded-xl shadow-md"
             >
-              <div class="bg-indigo-100 p-4 rounded-lg">
-                <i class="fa-solid fa-headset text-indigo-800 text-xl"></i>
-              </div>
-            </div>
-
-            <h3 class="text-xl text-left font-semibold text-gray-800 mb-4">
-              24/7 Support
-            </h3>
-
-            <p class="text-gray-500 text-left leading-relaxed">
-              Our support is available around the clock to assist you
-            </p>
-          </div>
-          <!-- secure payment card -->
-          <div
-            class="relative border bg-white rounded-2xl p-8 pt-14 shadow-sm hover:shadow-md transition duration-300"
-          >
-            <div
-              class="absolute -top-9 left-8 bg-white p-2 rounded-xl shadow-md"
-            >
-              <div class="bg-indigo-100 p-4 rounded-lg">
+              <div class="bg-indigo-100 p-3 sm:p-4 rounded-lg">
                 <i
-                  class="fa-solid fa-shield-halved text-indigo-800 text-xl"
+                  class="fa-solid fa-headset text-indigo-800 text-xl sm:text-2xl"
                 ></i>
               </div>
             </div>
-
-            <h3 class="text-xl text-left font-semibold text-gray-800 mb-4">
-              Secure Payment
+            <h3
+              class="text-xl sm:text-xl text-left font-semibold text-gray-800 mb-2 sm:mb-4"
+            >
+              24/7 Support
             </h3>
-
-            <p class="text-gray-500 text-left leading-relaxed">
-              Experiance safe and secure transactions with our encryoted payment
-              system
+            <p
+              class="text-gray-500 text-left text-sm sm:text-base leading-relaxed"
+            >
+              Our support is available around the clock to assist you.
             </p>
           </div>
-          <!-- Return card -->
+
+          <!-- Secure Payment -->
           <div
-            class="relative border bg-white rounded-2xl p-8 pt-14 shadow-sm hover:shadow-md transition duration-300"
+            class="relative border bg-white rounded-2xl p-6 sm:p-8 pt-14 shadow-sm hover:shadow-md transition duration-300"
           >
             <div
-              class="absolute -top-9 left-8 bg-white p-2 rounded-xl shadow-md"
+              class="absolute -top-8 left-6 sm:left-8 bg-white p-2 rounded-xl shadow-md"
             >
-              <div class="bg-indigo-100 p-4 rounded-lg">
-                <i class="fa-solid fa-rotate-left text-indigo-800 text-xl"></i>
+              <div class="bg-indigo-100 p-3 sm:p-4 rounded-lg">
+                <i
+                  class="fa-solid fa-shield-halved text-indigo-800 text-xl sm:text-2xl"
+                ></i>
               </div>
             </div>
+            <h3
+              class="text-xl sm:text-xl text-left font-semibold text-gray-800 mb-2 sm:mb-4"
+            >
+              Secure Payment
+            </h3>
+            <p
+              class="text-gray-500 text-left text-sm sm:text-base leading-relaxed"
+            >
+              Experience safe and secure transactions with our encrypted payment
+              system.
+            </p>
+          </div>
 
-            <h3 class="text-xl text-left font-semibold text-gray-800 mb-4">
+          <!-- Easy Return -->
+          <div
+            class="relative border bg-white rounded-2xl p-6 sm:p-8 pt-14 shadow-sm hover:shadow-md transition duration-300"
+          >
+            <div
+              class="absolute -top-8 left-6 sm:left-8 bg-white p-2 rounded-xl shadow-md"
+            >
+              <div class="bg-indigo-100 p-3 sm:p-4 rounded-lg">
+                <i
+                  class="fa-solid fa-rotate-left text-indigo-800 text-xl sm:text-2xl"
+                ></i>
+              </div>
+            </div>
+            <h3
+              class="text-xl sm:text-xl text-left font-semibold text-gray-800 mb-2 sm:mb-4"
+            >
               Easy Return
             </h3>
-
-            <p class="text-gray-500 text-left leading-relaxed">
-              Not satisfied? returb your products easily within 30 days
+            <p
+              class="text-gray-500 text-left text-sm sm:text-base leading-relaxed"
+            >
+              Not satisfied? Return your products easily within 30 days.
             </p>
           </div>
         </div>
       </div>
     </section>
-    <!-- Tranding now section -->
-    <section class="max-w-7xl mx-auto px-6 mt-12">
-      <h2 class="text-3xl font-bold mb-10 text-slate-950">Trending Now</h2>
+
+    <!-- Trending Now -->
+    <section class="max-w-7xl mx-auto px-4 md:px-6 mt-8 sm:mt-12">
+      <h2
+        class="text-2xl sm:text-3xl font-bold mb-6 sm:mb-10 text-slate-950 text-center sm:text-left"
+      >
+        Trending Now
+      </h2>
       <div
         id="trending-card-container"
-        class="grid md:grid-cols-2 lg:grid-cols-3 gap-10"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
       ></div>
     </section>
-<!-- Details modal -->
-  <button id="modal" class="btn hidden" onclick="showModal.showModal()">open modal</button>
-            <dialog id="showModal" class="modal modal-bottom sm:modal-middle">
-            <div class="modal-box">
-                <div id="modalBox"></div>
-                
-                <div class="modal-action">
-                <form method="dialog">
-                    <!-- if there is a button in form, it will close the modal -->
-                    <div class="w-11/12 md:w-[450px]">
-                        <button class="btn btn-block bg-[#0E7A811A] text-[#0E7A81]">Cancel</button>
-                    </div>
-                </form>
-                </div>
-            </div>
-            </dialog>
-            <!-- Add to cart modal -->
-             <!-- Toast Notification -->
-<!-- Toast container -->
-<div id="toastContainer" class="fixed top-5 right-5 flex flex-col space-y-2 z-50"></div>
 
+    <!-- Modals & Toasts -->
+    <button id="modal" class="btn hidden" onclick="showModal.showModal()">
+      open modal
+    </button>
+    <dialog id="showModal" class="modal modal-bottom sm:modal-middle">
+      <div class="modal-box">
+        <div id="modalBox"></div>
+        <div class="modal-action">
+          <form method="dialog">
+            <div class="w-full sm:w-[450px]">
+              <button class="btn btn-block bg-[#0E7A811A] text-[#0E7A81]">
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </dialog>
+
+    <div
+      id="toastContainer"
+      class="fixed top-5 right-2 sm:right-5 flex flex-col space-y-2 z-50"
+    ></div>
 
     <!-- Footer -->
     <footer class="bg-[#1e293b] text-slate-300 py-12 mt-14 px-6 font-sans">
@@ -255,7 +323,6 @@
               Quality products, fast delivery, and excellent support.
             </p>
           </div>
-
           <div>
             <h3
               class="text-xs font-bold uppercase tracking-widest text-white mb-6"
@@ -277,7 +344,6 @@
               <li><a class="hover:text-white transition">Contact</a></li>
             </ul>
           </div>
-
           <div>
             <h3
               class="text-xs font-bold uppercase tracking-widest text-white mb-6"
@@ -291,7 +357,6 @@
               <li><a class="hover:text-white transition">Privacy Policy</a></li>
             </ul>
           </div>
-
           <div>
             <h3
               class="text-xs font-bold uppercase tracking-widest text-white mb-4"
@@ -316,12 +381,10 @@
             </form>
           </div>
         </div>
-
         <div
           class="border-t border-slate-700 pt-8 flex flex-col md:flex-row justify-between items-center gap-6"
         >
           <p class="text-sm">© 2025 SwiftCart, Inc. All rights reserved.</p>
-
           <div class="flex space-x-6 text-xl">
             <a class="hover:text-white transition"
               ><i class="fa-brands fa-facebook"></i
@@ -342,6 +405,7 @@
         </div>
       </div>
     </footer>
+
     <script src="./js/index.js"></script>
   </body>
 </html>

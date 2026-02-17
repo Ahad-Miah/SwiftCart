@@ -1,43 +1,51 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" data-theme="light">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Products - SwiftCart</title>
-<!-- Tailwind+ DaisyUI -->
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://cdn.jsdelivr.net/npm/daisyui@4.10.2/dist/full.min.css" rel="stylesheet"/>
-<!-- Font awesome -->
-<link rel="stylesheet"
- href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
-
-<link rel="stylesheet" href="css/style.css">
-</head>
-
-<body>
-
-<!-- Navbar -->
- <nav class="bg-white shadow-md sticky top-0 w-full z-50">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Products - SwiftCart</title>
+    <!-- Tailwind + DaisyUI -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.10.2/dist/full.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md sticky top-0 w-full z-50">
       <div
-        class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center"
+        class="max-w-7xl mx-auto px-4 md:px-6 py-4 flex justify-between items-center"
       >
         <h1 class="text-2xl font-bold text-indigo-600">SwiftCart</h1>
 
-        <ul class="hidden md:flex gap-8 font-medium">
+        <ul
+          class="hidden md:flex gap-6 lg:gap-8 font-medium text-sm md:text-base"
+        >
+          <li><a href="./index.html" id="homeBtn"> Home </a></li>
           <li>
-            <a href="./index.html"  id="homeBtn"> Home </a>
+            <a href="./products.html" class="text-blue-500" id="productBtn">
+              Products
+            </a>
           </li>
-
-          <li>
-            <a href="./products.html" class="text-blue-500" id="productBtn"> Products </a>
-          </li>
-
           <li><a href="#">About</a></li>
           <li><a href="#">Contact</a></li>
         </ul>
+
         <div class="flex justify-center items-center gap-2">
+          <!-- Mobile Dropdown -->
           <div class="dropdown md:hidden">
-            <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+            <div
+              tabindex="0"
+              role="button"
+              class="btn btn-ghost btn-circle p-2"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="h-5 w-5"
@@ -55,7 +63,7 @@
             </div>
             <ul
               tabindex="-1"
-              class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              class="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-48 p-2 shadow"
             >
               <li><a href="index.html" class="text-indigo-600">Home</a></li>
               <li><a href="products.html">Products</a></li>
@@ -63,80 +71,126 @@
               <li><a href="#">Contact</a></li>
             </ul>
           </div>
-<div class="relative">
-  <div class="flex-none">
-    <div class="dropdown dropdown-end">
-      <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
-        <div class="indicator">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-          </svg>
-          <span id="cartItemCount" class="badge badge-sm indicator-item">0</span>
+
+          <!-- Cart -->
+          <div class="relative">
+            <div class="flex-none">
+              <div class="dropdown dropdown-end">
+                <div
+                  tabindex="0"
+                  role="button"
+                  class="btn btn-ghost btn-circle"
+                >
+                  <div class="indicator">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-5 w-5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                      />
+                    </svg>
+                    <span
+                      id="cartItemCount"
+                      class="badge badge-sm indicator-item"
+                      >0</span
+                    >
+                  </div>
+                </div>
+
+                <div
+                  tabindex="0"
+                  class="card card-compact dropdown-content bg-base-100 z-50 mt-3 w-72 sm:w-80 shadow"
+                >
+                  <div class="card-body">
+                    <h3 class="font-bold text-lg">
+                      Cart (<span id="cartCount">0</span> items)
+                    </h3>
+                    <div
+                      id="cartItems"
+                      class="space-y-2 max-h-64 overflow-y-auto"
+                    ></div>
+                    <span class="text-info font-semibold"
+                      >Subtotal: $<span id="cartSubtotal">0</span></span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-
-      <div tabindex="0" class="card card-compact dropdown-content bg-base-100 z-50 mt-3 w-80 shadow">
-        <div class="card-body">
-          <h3 class="font-bold text-lg">Cart (<span id="cartCount">0</span> items)</h3>
-          <div id="cartItems" class="space-y-2 max-h-64 overflow-y-auto"></div>
-          <span class="text-info font-semibold">Subtotal: $<span id="cartSubtotal">0</span></span>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-
       </div>
     </nav>
-    <!-- catrgory section -->
-     <section class="py-12 px-4 flex flex-col items-center justify-center bg-white">
-  <h2 class="text-4xl font-bold text-[#1e293b] mb-10 text-center">
-    Our Products
-  </h2>
 
-  <div id="category-container" class="flex flex-wrap justify-center gap-4">
-    
-    <button id="all" class="btn border-none activeBtn hover:bg-[#4338ca] rounded-full px-8 shadow-lg shadow-indigo-200 normal-case text-base h-12 min-h-0">
-      All
+    <!-- Category Section -->
+    <section
+      class="py-12 px-4 flex flex-col items-center justify-center bg-white"
+    >
+      <h2
+        class="text-3xl sm:text-4xl font-bold text-[#1e293b] mb-8 sm:mb-10 text-center"
+      >
+        Our Products
+      </h2>
+
+      <div
+        id="category-container"
+        class="flex flex-wrap justify-center gap-3 sm:gap-4"
+      >
+        <button
+          id="all"
+          class="btn border-none activeBtn hover:bg-[#4338ca] rounded-full px-6 sm:px-8 shadow-lg normal-case text-base h-10 sm:h-12 min-h-0"
+        >
+          All
+        </button>
+      </div>
+    </section>
+
+    <!-- Products Grid -->
+    <section class="max-w-7xl mx-auto px-4 md:px-6 mt-8 sm:mt-12">
+      <!-- Loading Spinner -->
+      <div id="loader" class="flex justify-center items-center py-16 hidden">
+        <span class="loading loading-spinner loading-lg text-indigo-600"></span>
+      </div>
+
+      <div
+        id="all-products-container"
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6"
+      ></div>
+    </section>
+
+    <!-- Details Modal -->
+    <button id="modal" class="btn hidden" onclick="showModal.showModal()">
+      open modal
     </button>
-
-  </div>
-</section>
-<section class="max-w-7xl mx-auto px-6 mt-12">
-  <!-- Loading Spinner -->
-<div id="loader" class="flex justify-center items-center py-16 hidden">
-  <span class="loading loading-spinner loading-lg text-indigo-600"></span>
-</div>
-
-  <div id="all-products-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
-</section>
-<!-- Details modal -->
-  <button id="modal" class="btn hidden" onclick="showModal.showModal()">open modal</button>
-            <dialog id="showModal" class="modal modal-bottom sm:modal-middle">
-            <div class="modal-box">
-                <div id="modalBox"></div>
-                
-                <div class="modal-action">
-                <form method="dialog">
-                    <!-- if there is a button in form, it will close the modal -->
-                    <div class="w-11/12 md:w-[450px]">
-                        <button class="btn btn-block bg-[#0E7A811A] text-[#0E7A81]">Cancel</button>
-                    </div>
-                </form>
-                </div>
+    <dialog id="showModal" class="modal modal-bottom sm:modal-middle">
+      <div class="modal-box">
+        <div id="modalBox"></div>
+        <div class="modal-action">
+          <form method="dialog">
+            <div class="w-full sm:w-[450px]">
+              <button class="btn btn-block bg-[#0E7A811A] text-[#0E7A81]">
+                Cancel
+              </button>
             </div>
-            </dialog>
-<!-- Add to cart modal -->
-<!-- Toast container -->
-<div id="toastContainer" class="fixed top-5 right-5 flex flex-col space-y-2 z-50"></div>
+          </form>
+        </div>
+      </div>
+    </dialog>
 
+    <!-- Toast Container -->
+    <div
+      id="toastContainer"
+      class="fixed top-5 right-2 sm:right-5 flex flex-col space-y-2 z-50"
+    ></div>
 
-<!-- footer -->
- 
-<footer class="bg-[#1e293b] text-slate-300 py-12 mt-14 px-6 font-sans">
+    <!-- Footer -->
+    <footer class="bg-[#1e293b] text-slate-300 py-12 mt-14 px-6 font-sans">
       <div class="max-w-7xl mx-auto">
         <div
           class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-10"
@@ -148,7 +202,6 @@
               Quality products, fast delivery, and excellent support.
             </p>
           </div>
-
           <div>
             <h3
               class="text-xs font-bold uppercase tracking-widest text-white mb-6"
@@ -170,7 +223,6 @@
               <li><a class="hover:text-white transition">Contact</a></li>
             </ul>
           </div>
-
           <div>
             <h3
               class="text-xs font-bold uppercase tracking-widest text-white mb-6"
@@ -184,7 +236,6 @@
               <li><a class="hover:text-white transition">Privacy Policy</a></li>
             </ul>
           </div>
-
           <div>
             <h3
               class="text-xs font-bold uppercase tracking-widest text-white mb-4"
@@ -209,12 +260,10 @@
             </form>
           </div>
         </div>
-
         <div
           class="border-t border-slate-700 pt-8 flex flex-col md:flex-row justify-between items-center gap-6"
         >
           <p class="text-sm">© 2025 SwiftCart, Inc. All rights reserved.</p>
-
           <div class="flex space-x-6 text-xl">
             <a class="hover:text-white transition"
               ><i class="fa-brands fa-facebook"></i
@@ -235,6 +284,7 @@
         </div>
       </div>
     </footer>
+
     <script src="./js/index.js"></script>
-</body>
+  </body>
 </html>
