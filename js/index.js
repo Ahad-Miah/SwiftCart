@@ -122,26 +122,42 @@ const addedCart=(data)=>{
      if(document.getElementById('showModal')) document.getElementById('showModal').close();
 
 }
+const removeFromCart = (index) => {
+    const removedItem = cart.splice(index, 1)[0]; 
+    updateCartCount(); 
+    showToast(`${removedItem.title} removed from cart!`);
+}
 const updateCartCount = () => {
    const cartItemsContainer = document.getElementById('cartItems');
     const cartCountBadge = document.getElementById('cartItemCount');
     const cartCountText = document.getElementById('cartCount');
     const cartSubtotal = document.getElementById('cartSubtotal');
-    cartItemsContainer.innerHTML = '';
+
+    cartItemsContainer.innerHTML = ''; 
 
     let total = 0;
 
-    cart.forEach(item => {
+    cart.forEach((item, index) => {
         total += parseFloat(item.price);
 
         const itemEl = document.createElement('div');
         itemEl.className = "flex justify-between items-center border-b border-gray-200 pb-1";
+
         itemEl.innerHTML = `
             <span class="truncate">${item.title}</span>
-            <span class="font-semibold">$${item.price}</span>
+            <div class="flex items-center gap-2">
+                <span class="font-semibold">$${item.price}</span>
+                <button class="text-red-500 font-bold hover:text-red-700 removeBtn">×</button>
+            </div>
         `;
+
+        itemEl.querySelector('.removeBtn').addEventListener('click', () => {
+            removeFromCart(index);
+        });
+
         cartItemsContainer.appendChild(itemEl);
     });
+
     cartCountBadge.textContent = cart.length;
     cartCountText.textContent = cart.length;
     cartSubtotal.textContent = total.toFixed(2);
