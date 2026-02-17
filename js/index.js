@@ -55,6 +55,58 @@ const loadCategories=()=>{
     displayCategories(categories)}
     );
 }
+const loadDetails=(id)=>{
+    
+    fetch(`https://fakestoreapi.com/products/${id}`)
+    .then(res =>res.json())
+    .then(data=>displayDetails(data))
+    .catch(error=>console.log(error));
+}
+const displayDetails = (details) => {
+    const modalBox = document.getElementById('modalBox');
+    modalBox.innerHTML = `
+        <div class="p-4 space-y-4">
+            <!-- Image -->
+            <img src="${details.image || 'https://via.placeholder.com/400x250'}" 
+                 alt="${details.title || 'Product Image'}" 
+                 class="w-full h-64 object-cover rounded-lg shadow-md" />
+            
+            <!-- Title -->
+            <h2 class="text-2xl font-bold text-gray-800">${details.title || "No Title"}</h2>
+            
+            <!-- Description -->
+            <p class="text-gray-600">${details.description || "No Description Available."}</p>
+            
+            <!-- Price and Rating -->
+            <div class="flex justify-between items-center">
+                <span class="text-xl font-semibold text-[#0E7A81]">$${details.price || "0.00"}</span>
+                <span class="flex items-center gap-1 text-yellow-500">
+                    ${"★".repeat(Math.floor(details.rating.rate || 0))} 
+                    ${"☆".repeat(5 - Math.floor(details.rating.rate || 0))}
+                    <span class="text-gray-500 text-sm">(${details.rating.rate || 0})</span>
+                </span>
+            </div>
+            
+            <!-- Add to Cart Button -->
+            <button 
+                class="btn w-full bg-[#0E7A81] text-white hover:bg-[#0B5C5E]"
+                onclick="addToCart('${details.id || ''}')">
+                Add to Cart
+            </button>
+        </div>
+    `;
+    
+    // Open the modal
+    document.getElementById('modal').click();
+}
+
+// Example Add to Cart function
+const addToCart = (id) => {
+    console.log(`Product with ID ${id} added to cart.`);
+    alert("Added to Cart!");
+}
+
+
 const displayProducts = (products, containerId) => {
     const cardContainer = document.getElementById(containerId);
     
@@ -85,10 +137,10 @@ const displayProducts = (products, containerId) => {
             </h3>
             <p class="text-lg font-bold text-gray-900 mb-5 mt-auto">$${product.price}</p>
             <div class="flex gap-2">
-              <button class="flex-1 border border-gray-300 rounded-lg py-2 text-sm text-gray-600 hover:bg-gray-50 transition">
+              <button  onclick="loadDetails(${product.id})"  class="flex-1 border border-gray-300 rounded-lg py-2 text-sm text-gray-600 hover:bg-gray-50 transition">
                 Details
               </button>
-              <button class="flex-1 bg-indigo-600 text-white rounded-lg py-2 text-sm hover:bg-indigo-700 transition">
+              <button onclick="addToCart(${product.id})" class="flex-1 bg-indigo-600 text-white rounded-lg py-2 text-sm hover:bg-indigo-700 transition">
                 Add to Cart
               </button>
             </div>
