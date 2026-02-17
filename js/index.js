@@ -118,12 +118,13 @@ const addToCart = (id) => {
 const addedCart=(data)=>{
  cart.push(data);
  updateCartCount();
- 
+   showToast(`${data.title} added to cart!`);
 }
 const updateCartCount = () => {
     const cartCount = document.getElementById('cartCount');
     cartCount.textContent = cart.length;
     document.getElementById('showModal').close();
+  
 }
 
 const displayProducts = (products, containerId) => {
@@ -224,16 +225,28 @@ const setActiveButton = (clickedButton) => {
 
   clickedButton.classList.add('activeBtn');
 };
-// const toggleLoader = (show) => {
-//     const loader = document.getElementById("loader");
-//     if (!loader) return;
+const showToast = (message) => {
+    const toastContainer = document.getElementById('toastContainer');
 
-//     if (show) {
-//         loader.classList.remove("hidden");
-//     } else {
-//         loader.classList.add("hidden");
-//     }
-// };
+    const toast = document.createElement('div');
+    toast.className = `
+        bg-green-500 text-white px-4 py-2 rounded shadow-lg
+        flex items-center justify-between space-x-2 animate-fadeIn
+    `;
+    toast.innerHTML = `
+        <span>${message}</span>
+        <button class="ml-4 font-bold text-white">&times;</button>
+    `;
+
+    toast.querySelector('button').addEventListener('click', () => {
+        toast.remove();
+    });
+
+    toastContainer.appendChild(toast);
+    setTimeout(() => {
+        toast.remove();
+    }, 3000);
+}
 
 
 
